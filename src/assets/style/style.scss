@@ -1,3 +1,11 @@
+@charset "utf-8";
+@use "packages/global";
+@use "packages/layouts";
+@use "packages/elements";
+@use "packages/components";
+
+// @use "packages/utility";
+
 body {
   background-color: pink;
 }

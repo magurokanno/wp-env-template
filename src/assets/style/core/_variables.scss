@@ -1,0 +1,120 @@
+@charset "utf-8";
+@use "sass:color";
+
+// 使用しない項目はコメントアウトする
+// …空欄の項目があるとsassコンパイル時にエラーが発生する
+
+// L-HEAD SASS変数 …@media内ではcss変数を使用できないため
+// M-HEAD @media ブレイクポイント
+
+$pc: 1192px; // PC
+$tab: 767px; // タブレット
+$sp: 480px; // スマホ
+
+@mixin pc {
+	@media (max-width: ($pc)) {
+		@content;
+	}
+}
+
+@mixin tab {
+	@media (max-width: ($tab)) {
+		@content;
+	}
+}
+
+@mixin sp {
+	@media (max-width: ($sp)) {
+		@content;
+	}
+}
+
+// L-HEAD グローバルスコープ
+// NOTE CSS変数定義「--変数名: 値;」
+// NOTE CSS変数呼び出し「var(--変数名);」
+
+:root {
+	// @media　ブレイクポイント
+	--portrait: 375px;
+	--landscape: 767px;
+	--desktop: 1192px;
+
+	// minが～以上…PCレイアウトにのみ適用
+	// maxが～以下…スマートフォンレイアウトにのみ適用
+
+	// width
+	--max-width: 1600px;
+	--main-width: ;
+	--container-width: ;
+	--primary-width: ;
+	--secondary-width: ;
+
+	// container…コンテンツの最大幅、p/s…各カラム、画面幅いっぱいは100%
+
+	// font　文字設定
+	// landscape…PCレイアウト
+
+	// フォント
+	--base-font-family: "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Helvetica Neue", arial,
+		meiryo, sans-serif;
+
+	// サイズ
+	--base-font-size: ;
+	--base-font-size-landscape: ;
+
+	// 字間
+	--base-letter-spacing: 16px;
+	--base-letter-spacing: 16px;
+
+	// 行間
+	--base-line-height: 1.5;
+	--base-line-height-landscape: 1.7;
+
+	// 色
+
+	// text-color　文字色
+	--primary-text: #212121;
+	--secondary-text: rgba(0, 0, 0, 0.6);
+	--disabled-text: rgba(0, 0, 0, 0.38);
+	--dividers: #dedede;
+	--dark-primary-text: rgba(255, 255, 255, 100);
+	--dark-secondary-text: rgba(255, 255, 255, 0.7);
+	--dark-disabled-text: rgba(255, 255, 255, 0.3);
+	--dark-dividers: rgba(255, 255, 255, 0.2);
+
+	// リンク色
+	--link-text: ;
+	--hover-text: color.adjust(--link-text, --alpha: -0.4);
+	--active-text: color.adjust(--link-text, --alpha: -0.4);
+
+	// color　基本色
+	--main-light-color: ;
+	--main-color: ;
+	--main-dark-color: ;
+	--sub-light-color: ;
+	--sub-color: ;
+	--sub-dark-color: ;
+	--accent-light-color: ;
+	--accent-color: ;
+	--accent-dark-color: ;
+
+	//Other Color
+	--success-color: #7c9e36;
+	--info-color: #4a90b9;
+	--warning-color: #f5ba4e;
+	--important-color: #d51313;
+
+	// Radius
+	--base-radius: 4px;
+	--base-radius-landscape: 4px;
+
+	// アニメーション
+	--base-duration: ms;
+	--base-timing: ease;
+
+	// Focus
+	--focus-outline-color: color.adjust(--link-text, --alpha: -0.4);
+	--focus-outline-width: 3px;
+	--focus-outline: solid;
+	--focus-outline-offset: 2px;
+}

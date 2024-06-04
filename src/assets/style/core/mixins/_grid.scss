@@ -1,0 +1,36 @@
+// L-HEAD  カードを段組みレイアウトする----------
+// NOTE 段組の余白の%値を求めるためのmixin
+// NOTE 使用法…PCは@media内に記述、SPは1ならば記述不要
+//	.is-grid- a to b {
+// 	@include grid (段組のクラス名 , 段組の数 , 段組の全体幅 , 段組の余白)
+// }
+
+@mixin grid($className: "is-grid", $col, $w, $g) {
+	// math.div( a , b )…割り算の関数…a/b
+	// '.math.floor'を使い小数第二位で切り捨てる(100を掛け→小数点切り捨て→100で割る)
+
+	// M-HEAD 段組の余白をpxから%へ変換する/ (余白/2)/段組み全体幅*100%
+	$g_ratio: calc($g / 2 / $w); // (余白/2)/段組み全体幅
+	$grid_gap: calc(math.floor($g_ratio * 10000) / 100);
+	$grid_gapper: calc(math.floor(($g_ratio * 100%) * 100) / 100);
+
+	// M-HEAD 段落の幅をpxから%に変換する/ (100/段落の数)-(余白の%値*2)
+	$col_ratio: calc(100 / $col); // 100/段組の数
+	$grid_width: calc(math.floor(($col_ratio - ($grid_gap * 2)) * 100) / 100);
+
+	// M-HEAD スタイルの記述
+	display: flex;
+	flex-wrap: wrap;
+	align-items: stretch;
+
+	// margin…子要素の左右に均等な余白を設定し、親要素に左右の幅分マイナスマージンを設定
+	margin-right: calc($grid_gapper * -1);
+	margin-left: calc($grid_gapper * -1);
+
+	// M-HEAD .is-grid-a to b .is-grid
+	#{$className} {
+		flex: 0 0 #{calc(100 / $col) - ($grid_gapper * 2)};
+		margin-right: $grid_gapper;
+		margin-left: $grid_gapper;
+	}
+}
